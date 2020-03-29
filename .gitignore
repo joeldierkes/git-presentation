@@ -283,3 +283,6 @@ TSWLatexianTemp*
 
 # Mac Directory File
 .DS_Store
+
+# example git directory
+git-example/

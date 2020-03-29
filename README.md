@@ -4,4 +4,4 @@
 `pdflatex presentation.tex`
 
 ## Release
-Every time a new change is pushed a new release is triggered!
+Every time a new version is tagged a new release is triggered!
