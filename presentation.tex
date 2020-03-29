@@ -2,19 +2,29 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-
-\usetheme{Warsaw}
+\usepackage{listings}
+%\usetheme{Warsaw}
 
 \title{Git}
 \author{Joel Dierkes}
 \date{\today}
+\AtBeginSection[]
+{
+    \begin{frame}
+        \frametitle{Kapitel}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
 
 \begin{document}
 \maketitle
-\frame{\tableofcontents[currentsection]}
-
+\begin{frame}{Überblick}
+\tableofcontents
+\end{frame}
 \input{section/History.tex}
+\input{section/Functionality.tex}
 
+\section{Quellen}
 \begin{thebibliography}{9}
 
 \bibitem{WVW}
@@ -26,6 +36,11 @@
   Git Wikipedia,
   \today,
   \url{https://en.wikipedia.org/wiki/Git}
+
+\bibitem{WREP}
+  Git Repository,
+  \today,
+  \url{https://en.wikipedia.org/wiki/Software_repository}
 
 \end{thebibliography}
 \end{document}
