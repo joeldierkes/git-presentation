@@ -1,6 +1,9 @@
 \documentclass{beamer}
+
 \usepackage[utf8]{inputenc}
-\usetheme{Warsaw}  %% Themenwahl
+\usepackage[ngerman]{babel}
+
+\usetheme{Warsaw}
 
 \title{Git}
 \author{Joel Dierkes}
@@ -10,11 +13,19 @@
 \maketitle
 \frame{\tableofcontents[currentsection]}
 
-\section{Abschnitt 1}
-\begin{frame} %%Eine Folie
-  \frametitle{Historie} %%Folientitel
-  \begin{Definition} %%Definition
-    Eine \textbf{Versionsverwaltung} ist ein System, das zur Erfassung von Änderungen an Dokumenten oder Dateien verwendet wird.
-  \end{Definition}
-\end{frame}
+\input{section/History.tex}
+
+\begin{thebibliography}{9}
+
+\bibitem{WVW}
+  Versionsverwaltung Wikipedia,
+  \today,
+  \url{https://en.wikipedia.org/wiki/Version_control}
+
+\bibitem{WGIT}
+  Git Wikipedia,
+  \today,
+  \url{https://en.wikipedia.org/wiki/Git}
+
+\end{thebibliography}
 \end{document}
