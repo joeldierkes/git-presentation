@@ -30,7 +30,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: ${{github.event.commits[0].message}}
       - name: Upload Release Asset - Presentation
-        id: upload-release-asset
+        id: upload-release-asset-presentation
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +40,7 @@ jobs:
           asset_name: presentation-${{ github.ref }}.pdf
           asset_content_type: application/pdf
       - name: Upload Release Asset - Notes
-        id: upload-release-asset
+        id: upload-release-asset-notes
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
