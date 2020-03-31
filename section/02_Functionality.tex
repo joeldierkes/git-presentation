@@ -8,6 +8,9 @@
   \begin{Definition}
     \textbf{Remote origin} ist ein Verweis auf das \textit{remote} Repository (also eine URL).
   \end{Definition}
+
+  \note[item]{Bei uns: ein Repository enthält Programmpakete und zugehörige Metadaten}
+  \note[item]{Bei uns: Logs, temporäre Dateien oder Nutzerspezifische Config-Dateien werden nur lokal gespeichert!}
 \end{frame}
 
 \begin{frame}[fragile]{.git Ordner}
@@ -29,6 +32,9 @@
   drwxr-xr-x  10 joeldierkes  staff  320 Mar 29 21:43 objects
   drwxr-xr-x   4 joeldierkes  staff  128 Mar 29 21:43 refs
   \end{lstlisting}
+
+  \note[item]{Der .git Ordner kann auch durch das Umbenennen der Umgebungsvariable \textbf{GIT\_DIR} anders benannt werden}
+  \note[item]{Git guckt im aktuellen Verzeichnis ob der .git Ordner gefunden wurde, falls nicht wird dies rekursiv für alle Parent-Directories gemacht}
 \end{frame}
 
 \begin{frame}{Blob}
@@ -41,6 +47,9 @@
     \pause
     \item Ist eindeutig durch den SHA-1 Wert bestimmt (Kollision verschwindend gering)
   \end{itemize}
+
+  \note[item]{Ein Blob wird \textbf{komprimiert} gespeichert}
+  \note[item]{Die annahme, dass zwei Elemente mit gleichem Hash-Wert auch gleich sind, ist in diesem Fall ausreichend (genügend geringe Chance für eine Kollision)}
 \end{frame}
 
 \begin{frame}{Tree}
@@ -49,12 +58,14 @@
   \end{Definition}
   \begin{itemize}
     \pause
-    \item Verweist auf Blobs und weitere (Sub-)Trees.
+    \item Verweist auf Blobs und weitere (Sub-)Trees
     \pause
-    \item Enthält ebenfalls keine Meta Daten
+    \item Enthält auch Daten wie Datei- und Pfadnamen von Blobs und Trees
     \pause
     \item Ist ebenfalls eindeutig durch den SHA-1 Wert bestimmt
   \end{itemize}
+
+  \note[item]{Bildet das Dateisystem in git ab, allerdings über verschiedene Versionen hinweg}
 \end{frame}
 
 \begin{frame}{Commit}
@@ -63,16 +74,24 @@
   \end{Definition}
   \begin{itemize}
     \pause
-    \item Verweist auf einen Tree, einen oder mehrere \glqq Parent\grqq{} Commits, einen Autor, ein Datum und weitere Informationen
+    \item Verweist auf einen Tree und einen oder mehrere \glqq Parent\grqq{} Commits
+    \pause
+    \item Änthält Informationen zu Autor, Datum und weiteres
     \pause
     \item Hat einen semantischen Sinnzusamenhang
     \pause
     \item Ist ebenfalls eindeutig durch den SHA-1 Wert bestimmt
   \end{itemize}
+
+  \note[item]{Im Repository kann nur zwischen Commits gewechselt werden, ein Zwischenzustand ist nicht möglich}
+  \note[item]{kann Kommentiert werden, sollte sinnvoll kommentiert sein}
 \end{frame}
 
 \begin{frame}{Commit}
-  \includegraphics[scale=0.5]{./section/pictures/internes.png}
+  \href{https://medium.com/@gohberg/the-biggest-misconception-about-git-b2f87d97ed52}{\includegraphics[scale=0.5]{./section/pictures/internes.png}}
+
+  \note[item]{Ein Graph, der mehere Blobs, Trees und Commits zeigt}
+  \note[item]{Im Späteren werden Blobs und Trees nicht mehr gezeigt $\rightarrow$ Commit Graph}
 \end{frame}
 
 \begin{frame}{Tags}
@@ -83,10 +102,27 @@
     \pause
     \item Sollte einen sinnvollen Namen besitzen
   \end{itemize}
+
+  \note[item]{Eine Möglichkeit, einen Commit zu benennen und ihn so leichter zu finden}
+  \note[item]{Meist für Auslieferungen o.ä.}
 \end{frame}
 
 \begin{frame}{Index}
   \begin{itemize}
-    \item Referenziert die Blobs und Trees auf Systemdateien/-ordner
+    \item Temporäres Speichern von Blobs und Trees, bis diese Commitet werden
+    \pause
+    \item Damit sind die Änderungen nicht zwingend im RRepository
+    \pause
+    \item Low-level, darauf sollte nie gearbeitet werden
+    \pause
+    \href{https://hackernoon.com/understanding-git-index-4821a0765cf}{\includegraphics[scale=0.25]{./section/pictures/index.png}}
   \end{itemize}
+
+  \note[item]{Arbeitsfluss:
+    \begin{itemize}
+      \item Im Working-Directory werden änderungen vorgenommen
+      \item Im Stagin-Directory werden diese temporär gespeichert
+      \item Im Repository werden diese dauerhaft und für alle commitet
+    \end{itemize}}
+  \note[item]{Dies sollte alles mit Befehlen/einem GUI umgesetzt werden, low-level sollte nichts verändert werden}
 \end{frame}
