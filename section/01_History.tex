@@ -2,13 +2,16 @@
 
 \begin{frame}{Probleme}
   \textbf{Was für Hauptprobleme gibt es in der Softwareentwicklung?}
-  \note[item]{Test}
   \begin{itemize}
     \pause
-    \item Viele \textbf{gleichzeitige} Entwickler
+    \item Viele Entwickler, die \textbf{gleichzeitig} arbeiten
     \pause
     \item Durch Veränderungen am Code können \textbf{Fehler} entstehen
   \end{itemize}
+
+  \note[item]{\textbf{Entwickler}: Zwei Entwickler arbeiten an der gleichen Datei/Zeile, welche soll genommen werden?}
+  \note[item]{\textbf{Fehler}: Wann ist dieser Fehler entstanden, wann hat das System noch funktioniert?}
+  \note[item]{$\rightarrow$ Offensichtlich muss Code nachvollziehbar versioniert werden, mit Datum, Uhrzeit, Entwickler, ...}
 \end{frame}
 
 \begin{frame}{Versionsverwaltung}
@@ -33,6 +36,9 @@
         \item ...
       \end{itemize}
   \end{itemize}
+  
+  \note[item]{\textbf{Zentrale} Systeme haben ein Repository, auf dem Änderungen gespeichert werden}
+  \note[item]{Bei \textbf{verteilten} Systemen besitzt jeder Nutzer eine Kopie des Repositories und diese werden dann miteinander (meist einem zentralen) abgeglichen}
 \end{frame}
 
 \begin{frame}{Git}
@@ -45,4 +51,7 @@
     \pause
     \item Sollte \textbf{schnell}, \textbf{performant} und \textbf{einfach zu bedienen} sein
   \end{itemize}
+
+  \note[item]{Für \textbf{Linux} entwickelt, da kein System den Standards von Linus genügte}
+  \note[item]{Very \textbf{first Commit}: \glqq Initial revision of "git", the information manager from hell\grqq}
 \end{frame}
