@@ -11,11 +11,15 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
         with:
-          ref: dev
+          ref: ${{ github.ref }}
       - name: Compile LaTeX document
         uses: dante-ev/latex-action@master
         with:
           root_file: presentation.tex
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: notes.tex
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
@@ -25,8 +29,8 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: ${{github.event.commits[0].message}}
-      - name: Upload Release Asset
-        id: upload-release-asset
+      - name: Upload Release Asset - Presentation
+        id: upload-release-asset-presentation
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,4 +38,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: ./presentation.pdf
           asset_name: presentation-${{ github.ref }}.pdf
+          asset_content_type: application/pdf
+      - name: Upload Release Asset - Notes
+        id: upload-release-asset-notes
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./notes.pdf
+          asset_name: notes-${{ github.ref }}.pdf
           asset_content_type: application/pdf

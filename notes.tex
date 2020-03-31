@@ -1,4 +1,12 @@
-\documentclass{beamer}
+\documentclass[handout]{beamer}
+
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen}
+% itemize notes
+\AtBeginNote{
+    \let\enumerate\itemize
+    \let\endenumerate\enditemize
+}
 
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -8,14 +16,6 @@
 \title{Git}
 \author{Joel Dierkes}
 \date{\today}
-% show table of contents before every section
-\AtBeginSection[]
-{
-    \begin{frame}
-        \frametitle{Kapitel}
-        \tableofcontents[currentsection]
-    \end{frame}
-}
 
 \begin{document}
 \maketitle
